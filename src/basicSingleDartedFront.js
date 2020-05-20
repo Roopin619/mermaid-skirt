@@ -56,11 +56,11 @@ export default function(part) {
     points.rightMermaidBottom = points.shiftedLeftDartC
       .translate(rightMermaidHipHemDiff / 2, measurements.inseam + options.inseamToGround);
     points.leftMermaidLHem = points.leftMermaidBottom
-      .translate(-leftMermaidHipHemDiff, -0.15 * leftMermaidHipHemDiff);
+      .translate(-leftMermaidHipHemDiff, -0.1 * leftMermaidHipHemDiff);
     points.leftMermaidRHem = points.leftMermaidBottom
       .translate(leftMermaidHipHemDiff, -0.1 * leftMermaidHipHemDiff);
     points.rightMermaidLHem = points.rightMermaidBottom
-      .translate(-rightMermaidHipHemDiff, -0.15 * rightMermaidHipHemDiff);
+      .translate(-rightMermaidHipHemDiff, -0.1 * rightMermaidHipHemDiff);
     points.rightMermaidRHem = points.rightMermaidBottom
       .translate(rightMermaidHipHemDiff, -0.1 * rightMermaidHipHemDiff);
     points.leftMermaidBottomCpL = points.leftMermaidBottom
@@ -71,6 +71,9 @@ export default function(part) {
       .shift(180, rightMermaidHipHemDiff / 1.5);
     points.rightMermaidBottomCpR = points.rightMermaidBottom
       .shift(0, rightMermaidHipHemDiff / 1.5);
+
+    points.leftMermaidCut = points.leftDartPoint.shift(185, 0.1 * shiftDistance);
+    points.rightMermaidCut = points.shiftedLeftDartPoint.shift(-5, 0.1 * shiftDistance);
 
     paths.waistCurve = new Path()
       .move(points.leftDartR)
@@ -86,7 +89,7 @@ export default function(part) {
       ._curve(points.leftMermaidBottomCpR, points.leftMermaidRHem)
       ._curve(points.leftMermaidCpR, points.leftMermaidRHip)
       .line(points.leftDartPoint)
-      .close();
+      .line(points.leftMermaidCut);
 
     paths.frontMermaid2 = new Path()
       .move(points.shiftedLeftDartPoint)
@@ -98,6 +101,7 @@ export default function(part) {
       ._curve(points.rightMermaidBottomCpL, points.rightMermaidLHem)
       ._curve(points.rightMermaidCpL, points.rightMermaidLHip)
       .line(points.shiftedLeftDartPoint)
+      .line(points.rightMermaidCut);
   
     // Complete?
     if (complete) {

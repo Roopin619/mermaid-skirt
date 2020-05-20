@@ -33,7 +33,7 @@ export default {
   measurements: ["length","frontWaistArc","backWaistArc","hemLine","frontHipArc","backHipArc","naturalWaist","hipsCircumference","inseam"],
   dependencies: {},  
   inject: {},
-  hide: ["basicSingleDartedBack"],
+  hide: [],
   parts: ["basicSingleDartedFront","basicSingleDartedBack"],
   options: {
     manipulateHem: { mm: 0, min: -50.8, max: 50.8 },
