@@ -39,8 +39,8 @@ export default function(part) {
     points.rightMermaidRHip = points.origin.translate(measurements.frontHipArc + shiftDistance, options.naturalWaistToHip);
     points.rightMermaidRHipCp = points.rightMermaidRHip.shift(90, options.naturalWaistToHip / 2);
 
-    const leftMermaidHipHemDiff = points.leftMermaidLHip.dx(points.leftMermaidRHip);
-    const rightMermaidHipHemDiff = points.rightMermaidLHip.dx(points.rightMermaidRHip);
+    const leftMermaidHipDiff = points.leftMermaidLHip.dx(points.leftMermaidRHip);
+    const rightMermaidHipDiff = points.rightMermaidLHip.dx(points.rightMermaidRHip);
 
     points.leftMermaidCpL = points.leftMermaidLHip.shift(-87, measurements.inseam/1.6);
     points.leftMermaidCpR = points.leftMermaidRHip.shift(-93, measurements.inseam/2);
@@ -52,25 +52,25 @@ export default function(part) {
     points.waistCp = points.waistCp.shift(0, shiftDistance);
 
     points.leftMermaidBottom = points.origin
-      .translate(leftMermaidHipHemDiff / 2, measurements.inseam + options.inseamToGround);
-    points.rightMermaidBottom = points.shiftedLeftDartC
-      .translate(rightMermaidHipHemDiff / 2, measurements.inseam + options.inseamToGround);
+      .translate(leftMermaidHipDiff / 2, measurements.inseam + options.inseamToGround);
+    points.rightMermaidBottom = points.leftMermaidBottom
+      .shift(0, leftMermaidHipDiff / 2 + shiftDistance + rightMermaidHipDiff / 2);
     points.leftMermaidLHem = points.leftMermaidBottom
-      .translate(-leftMermaidHipHemDiff, -0.1 * leftMermaidHipHemDiff);
+      .translate(-leftMermaidHipDiff, -0.1 * rightMermaidHipDiff);
     points.leftMermaidRHem = points.leftMermaidBottom
-      .translate(leftMermaidHipHemDiff, -0.1 * leftMermaidHipHemDiff);
+      .translate(leftMermaidHipDiff, -0.1 * rightMermaidHipDiff);
     points.rightMermaidLHem = points.rightMermaidBottom
-      .translate(-rightMermaidHipHemDiff, -0.1 * rightMermaidHipHemDiff);
+      .translate(-rightMermaidHipDiff, -0.1 * rightMermaidHipDiff);
     points.rightMermaidRHem = points.rightMermaidBottom
-      .translate(rightMermaidHipHemDiff, -0.1 * rightMermaidHipHemDiff);
+      .translate(rightMermaidHipDiff, -0.1 * rightMermaidHipDiff);
     points.leftMermaidBottomCpL = points.leftMermaidBottom
-      .shift(180, leftMermaidHipHemDiff / 1.5);
+      .shift(180, leftMermaidHipDiff / 1.5);
     points.leftMermaidBottomCpR = points.leftMermaidBottom
-      .shift(0, leftMermaidHipHemDiff / 1.5);
+      .shift(0, leftMermaidHipDiff / 1.5);
     points.rightMermaidBottomCpL = points.rightMermaidBottom
-      .shift(180, rightMermaidHipHemDiff / 1.5);
+      .shift(180, rightMermaidHipDiff / 1.5);
     points.rightMermaidBottomCpR = points.rightMermaidBottom
-      .shift(0, rightMermaidHipHemDiff / 1.5);
+      .shift(0, rightMermaidHipDiff / 1.5);
 
     points.leftMermaidCut = points.leftDartPoint.shift(185, 0.1 * shiftDistance);
     points.rightMermaidCut = points.shiftedLeftDartPoint.shift(-5, 0.1 * shiftDistance);
